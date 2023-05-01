@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Signup/Login Form</title>
+</head>
+<body>
+  <h1>Signup Form</h1>
+  <form id="signup-form">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required><br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" required><br>
+    <button type="submit">Signup</button>
+  </form>
+  
+  <h1>Login Form</h1>
+  <form id="login-form">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required><br>
+    <button type="submit">Login</button>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Handle form submission with AJAX
+    $(document).ready(function() {
+      $('#signup-form').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+          url: '/signup',
+          method: 'POST',
+          data: $('#signup-form').serialize(),
+          success: function(response) {
+            console.log(response);
+            // handle response
+          },
+          error: function(xhr) {
+            console.error(xhr);
+            // handle error
+          }
+        });
+      });
+
+      $('#login-form').submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+          url: '/login',
+          method: 'POST',
+          data: $('#login-form').serialize(),
+          success: function(response) {
+            console.log(response);
+            // handle response
+          },
+          error: function(xhr) {
+            console.error(xhr);
+            // handle error
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
